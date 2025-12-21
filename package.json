@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev -r tsconfig-paths/register --files src/app.ts",
-    "build": "tsc && tsc-alias"
+    "build": "tsc && tsc-alias",
+    "migration:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d ./src/infra/database/typeorm/recognition_sign_db/connection.ts",
+    "migration:revert": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert -d ./src/infra/database/typeorm/recognition_sign_db/connection.ts",
+    "migration:create": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create"
   },
   "keywords": [],
   "author": "",

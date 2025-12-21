@@ -1,11 +1,11 @@
 import { Log } from "../../logger/log";
-import { gestureService } from "./recognition_sign_db/connection";
+import { recognitionSignDb } from "./recognition_sign_db/connection";
 
 export const connect = async () => {
   try {
     Log.info("[DATABASE] Connecting...");
 
-    await Promise.all([gestureService.initialize()]);
+    await Promise.all([recognitionSignDb.initialize()]);
 
     Log.info("[DATABASE] Connected.");
   } catch (error) {
