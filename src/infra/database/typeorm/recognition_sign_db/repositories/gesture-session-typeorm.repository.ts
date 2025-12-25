@@ -4,8 +4,12 @@ import { recognitionSignDb } from "../connection";
 import { CreateSessionParams } from "@/domain/gesture-session/dtos/create-session-param";
 import { GestureSessionMapper } from "../mappers/gesture-session.mapper";
 import { DatabaseError } from "@/domain/shared/errors/database.error";
+import { GestureSessionDomainEntity } from "@/domain/gesture-session/entities/gesture-session.domain.entity";
+import { GestureSessionDomainInterfaceRepository } from "@/domain/gesture-session/repositories/gesture-session-domain.repository";
 
-export class GestureSessionTypeORMRepository {
+export class GestureSessionTypeORMRepository
+  implements GestureSessionDomainInterfaceRepository
+{
   private readonly repository: Repository<GestureSessionTypeOrmEntity>;
 
   constructor() {
@@ -14,7 +18,9 @@ export class GestureSessionTypeORMRepository {
     );
   }
 
-  async createAndStartSession(params: CreateSessionParams) {
+  async createAndStartSession(
+    params: CreateSessionParams
+  ): Promise<GestureSessionDomainEntity> {
     try {
       const sessionInstance = this.repository.create({
         startedAt: params.startedAt,
