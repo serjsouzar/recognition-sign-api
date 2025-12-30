@@ -12,8 +12,12 @@ export class GestureSessionUseCase {
   }
 
   async execute(params: CreateSessionParams) {
-    //Pensar se existe alguma logica a ser implementada para o usecase de sessão
-    // const a = this.repository.createAndStartSession({
-    // })
+    const session = await this.repository.findSessionByIp(params.userIp);
+
+    if (session) {
+      await this.repository.startExistingSession(params);
+    } else {
+      await this.repository.createAndStartSession(params);
+    }
   }
 }

@@ -41,4 +41,45 @@ export class GestureSessionTypeORMRepository
       throw new DatabaseError("Falha ao tentar criar sessão", error);
     }
   }
+
+  async findSessionByIp(
+    userIp: string | any
+  ): Promise<GestureSessionDomainEntity> {
+    try {
+      const session = await this.repository.findOne({
+        where: {
+          userIp,
+        },
+      });
+      return GestureSessionMapper.toEntity(session!);
+    } catch (e) {
+      let error: Error | undefined = undefined;
+
+      if (e instanceof Error) {
+        error = e;
+      }
+
+      throw new DatabaseError(
+        "Falha ao tentar localizar registro de sessão",
+        error
+      );
+    }
+  }
+
+  async startExistingSession(params: CreateSessionParams): Promise<void> {
+    try {
+      await this.repository.update(
+        { userIp: params.userIp },
+        { startedAt: params.startedAt, status: true }
+      );
+    } catch (e) {
+      let error: Error | undefined = undefined;
+
+      if (e instanceof Error) {
+        error = e;
+      }
+
+      throw new DatabaseError("Falha ao atualizar sessão existente", error);
+    }
+  }
 }

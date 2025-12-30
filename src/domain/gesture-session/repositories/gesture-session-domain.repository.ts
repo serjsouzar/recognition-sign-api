@@ -5,4 +5,10 @@ export interface GestureSessionDomainInterfaceRepository {
   createAndStartSession: (
     params: CreateSessionParams
   ) => Promise<GestureSessionDomainEntity>;
+
+  findSessionByIp: (
+    userIp: string | any
+  ) => Promise<GestureSessionDomainEntity>;
+
+  startExistingSession: (params: CreateSessionParams) => Promise<void>;
 }
