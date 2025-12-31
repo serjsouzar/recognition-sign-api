@@ -1,11 +1,11 @@
 import { FastifySchema } from "fastify";
 import S from "fluent-json-schema";
 
-const successResponse = "Sessão iniciada!";
+const successResponse = { message: "Sessão iniciada!" };
 
 export const gestureSessionSchema: FastifySchema = {
-  tags: ["Areas"],
-  querystring: S.object()
+  tags: ["Session"],
+  body: S.object()
     .prop(
       "startedAt",
       S.string()
@@ -16,7 +16,7 @@ export const gestureSessionSchema: FastifySchema = {
     .prop("userIp", S.string().raw({ nullable: false }))
     .prop("status", S.boolean().raw({ nullable: false })),
   response: {
-    200: successResponse,
+    201: successResponse,
     401: {
       $ref: "Unauthorized#",
     },

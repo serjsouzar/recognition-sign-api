@@ -8,7 +8,7 @@ export interface GestureSessionDomainInterfaceRepository {
 
   findSessionByIp: (
     userIp: string | any
-  ) => Promise<GestureSessionDomainEntity>;
+  ) => Promise<GestureSessionDomainEntity | null>;
 
   startExistingSession: (params: CreateSessionParams) => Promise<void>;
 }

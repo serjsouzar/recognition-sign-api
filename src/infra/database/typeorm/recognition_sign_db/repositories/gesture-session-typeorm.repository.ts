@@ -44,7 +44,7 @@ export class GestureSessionTypeORMRepository
 
   async findSessionByIp(
     userIp: string | any
-  ): Promise<GestureSessionDomainEntity> {
+  ): Promise<GestureSessionDomainEntity | null> {
     try {
       const session = await this.repository.findOne({
         where: {
@@ -53,16 +53,7 @@ export class GestureSessionTypeORMRepository
       });
       return GestureSessionMapper.toEntity(session!);
     } catch (e) {
-      let error: Error | undefined = undefined;
-
-      if (e instanceof Error) {
-        error = e;
-      }
-
-      throw new DatabaseError(
-        "Falha ao tentar localizar registro de sessão",
-        error
-      );
+      return null;
     }
   }
 

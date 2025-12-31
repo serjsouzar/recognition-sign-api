@@ -8,8 +8,8 @@ export const configure = (fastify: FastifyInstance) => {
 
   fastify.route({
     url: "/session",
-    method: "get",
-    // schema: gestureSessionSchema, <--- ajustar erro que esta ocorrendo ao tentar rodar o projeto com esse schema
+    method: "POST",
+    schema: gestureSessionSchema,
     handler: gestureSessionController.execute,
   });
 };

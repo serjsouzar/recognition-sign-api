@@ -12,15 +12,15 @@ export class GestureSessionController {
 
   execute = async (
     request: FastifyRequest<{
-      Params: {
-        userIp: string;
+      Body: {
         startedAt: Date | string;
+        userIp: string;
         status: boolean;
       };
     }>,
     reply: FastifyReply
   ) => {
-    const { startedAt, status, userIp } = request.params;
+    const { startedAt, userIp, status } = request.body;
 
     const response = await this.useCase.execute({
       startedAt,

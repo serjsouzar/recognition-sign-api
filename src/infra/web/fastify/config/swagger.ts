@@ -12,7 +12,7 @@ export const configure = async (fastify: FastifyInstance) => {
   await fastify.register(swagger, {
     openapi: {
       info: {
-        title: "Template de projeto backend",
+        title: "Recognition Signs API",
         version: "1.0.0",
       },
       components: {
