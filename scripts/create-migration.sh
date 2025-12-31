@@ -13,3 +13,6 @@ yarn typeorm migration:create ./src/infra/database/typeorm/recognition_sign_db/m
 
 # Executa comando para atualizar orm
 yarn upgrade typeorm
+
+# Roda as migrations pendentes
+yarn typeorm migration:run -d ./dist/infra/database/typeorm/recognition_sign_db/connection

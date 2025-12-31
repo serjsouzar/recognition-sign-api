@@ -10,7 +10,7 @@ import {
   GESTURE_SERVICE_DEBUG,
 } from "../../../../config/env";
 
-export const gestureService = new DataSource({
+export const recognitionSignDb = new DataSource({
   type: "postgres",
   host: GESTURE_SERVICE_HOST,
   port: GESTURE_SERVICE_PORT,
